@@ -5,8 +5,11 @@ Sub Main ()
 	ParticleTrajectoryReader.LoadTrajectoryData
 	ids = ParticleTrajectoryReader.GetSourceIDs()
 	Open "source_names.txt" For Output As #1
+
+	Print #1, "sourceID"; vbTab; "sourceName"
+
 	For Each id In ids
-		Print #1, id; " = "; ParticleTrajectoryReader.GetSourceName(id)
+		Print #1, id; vbTab; ParticleTrajectoryReader.GetSourceName(id)
 	Next
 	Close #1
 End Sub
