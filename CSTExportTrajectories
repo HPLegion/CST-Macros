@@ -16,6 +16,7 @@ Sub Main
     Dim nTrajectories As Long
     Dim n As Long
     Dim SourceIDs() As Long
+    Dim Line As String
 
 	'If necessary create folder
 	If Len(Dir(FilePath, vbDirectory)) = 0 Then
@@ -75,11 +76,13 @@ Sub Main
             sID = ParticleTrajectoryReader.GetQuantityValues("EmissionID","")
             mass = ParticleTrajectoryReader.GetQuantityValues("Mass","")
             macroCharge = ParticleTrajectoryReader.GetQuantityValues("ChargeMacro","")
-            Print #1, n; SeparatorChar;
-            Print #1, mass(0); SeparatorChar;
-            Print #1, macroCharge(0); SeparatorChar;
-            Print #1, CLng(sID(0)); SeparatorChar;
-            Print #1
+            ' Print #1, n; SeparatorChar;
+            ' Print #1, mass(0); SeparatorChar;
+            ' Print #1, macroCharge(0); SeparatorChar;
+            ' Print #1, CLng(sID(0)); SeparatorChar;
+            ' Print #1
+            Line = CStr(n) + SeparatorChar + CStr(mass(0)) + SeparatorChar + CStr(macroCharge(0)) + SeparatorChar + CStr(CLng(sID(0)))
+            Print #1, Line
         Next
 
         'Close File
@@ -101,8 +104,7 @@ Sub Main
         Print #1, "particleID"; SeparatorChar;
         Print #1, "Time"; SeparatorChar;
         Print #1, "x"; SeparatorChar; "y"; SeparatorChar; "z"; SeparatorChar;
-        Print #1, "px(normed)"; SeparatorChar; "py(normed)"; SeparatorChar; "pz(normed)"; SeparatorChar;
-        Print #1, "mass(kg)"; SeparatorChar;
+        Print #1, "px(normed)"; SeparatorChar; "py(normed)"; SeparatorChar; "pz(normed)";
         Print #1
 
         'Write Content
@@ -128,15 +130,17 @@ Sub Main
 
             Steps = ParticleTrajectoryReader.GetNParticles() 'Weird way to test number of timesteps
             For s = 0 To Steps - 1
-                Print #1, n; SeparatorChar;
-                Print #1, t(s); SeparatorChar;
-                Print #1, x(s); SeparatorChar;
-                Print #1, y(s); SeparatorChar;
-                Print #1, z(s); SeparatorChar;
-                Print #1, px(s); SeparatorChar;
-                Print #1, py(s); SeparatorChar;
-                Print #1, pz(s); SeparatorChar;
-                Print #1
+                ' Print #1, n; SeparatorChar;
+                ' Print #1, t(s); SeparatorChar;
+                ' Print #1, x(s); SeparatorChar;
+                ' Print #1, y(s); SeparatorChar;
+                ' Print #1, z(s); SeparatorChar;
+                ' Print #1, px(s); SeparatorChar;
+                ' Print #1, py(s); SeparatorChar;
+                ' Print #1, pz(s); SeparatorChar;
+                ' Print #1
+                Line = CStr(n) + SeparatorChar + CStr(t(s)) + SeparatorChar + CStr(x(s)) + SeparatorChar + CStr(y(s)) + SeparatorChar + CStr(z(s)) + SeparatorChar + CStr(px(s)) + SeparatorChar + CStr(py(s)) + SeparatorChar + CStr(pz(s))
+                Print #1, Line
             Next
 
         Next
