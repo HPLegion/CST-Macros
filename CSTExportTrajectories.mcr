@@ -41,10 +41,11 @@ Sub Main
 
         'Write Content
         For Each id In SourceIDs
-		    Print #1, id; SeparatorChar; ParticleTrajectoryReader.GetSourceName(id)
+		    Print #1, CStr(id); SeparatorChar; ParticleTrajectoryReader.GetSourceName(id)
 	    Next
 
         'Close File
+        Print #1, "EOF";
         Close #1
     End If
 
@@ -86,6 +87,7 @@ Sub Main
         Next
 
         'Close File
+        Print #1, "EOF";
         Close #1
     End If
 
@@ -146,6 +148,7 @@ Sub Main
         Next
 
         'Close File
+        Print #1, "EOF";
         Close #1
     End If
 
