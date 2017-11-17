@@ -24,7 +24,8 @@ Sub Main
 	End If
 
     'Load Data
-	ParticleTrajectoryReader.LoadTrajectoryData
+    ParticleTrajectoryReader.Reset()
+	ParticleTrajectoryReader.LoadTrajectoryData()
 
     ' Create Source ID File
     If SaveSourceNames Then
@@ -92,7 +93,7 @@ Sub Main
     End If
 
     ' Create File containing Trajectory Information
-    If SaveParticleConstants Then
+    If SaveParticleTrajectories Then
 
         'Get number of trajectories
         nTrajectories = ParticleTrajectoryReader.GetNTrajectories()
