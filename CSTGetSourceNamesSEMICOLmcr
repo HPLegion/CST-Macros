@@ -1,0 +1,34 @@
+' Prints the names and ids of all sources in one file for identification
+
+Sub Main
+	Const FilePath = GetProjectPath("Root") + "\"
+	Const SeparatorChar = ";"
+	Const CommentChar = "% "
+
+    Dim FileName As String
+    Dim SourceIDs() As Long
+
+
+    'Load Data
+    ParticleTrajectoryReader.Reset()
+	ParticleTrajectoryReader.LoadTrajectoryData()
+
+    'Get Source IDs
+    SourceIDs = ParticleTrajectoryReader.GetSourceIDs()
+
+    'Open File
+    FileName = "source_names.txt"
+    Open (FilePath + FileName) For Output As #1
+
+    'Write Header
+    Print #1, CommentChar; "sourceID"; SeparatorChar; "sourceName"
+
+    'Write Content
+    For Each id In SourceIDs
+	    Print #1, CStr(id); SeparatorChar; ParticleTrajectoryReader.GetSourceName(id)
+    Next
+
+    'Close File
+    Print #1, "EOF";
+    Close #1
+End Sub
